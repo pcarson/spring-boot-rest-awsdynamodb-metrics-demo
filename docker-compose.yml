@@ -1,0 +1,56 @@
+version: '3'
+#
+# NB, no specific volumes set, data storage will default to /var/lib/docker/volumes on ubuntu
+# clean up with docker volume prune
+#
+services:
+  sbrawsddbm-localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEFAULT_REGION=eu-central-1
+#      - SERVICES=sqs,sns,s3,cloudformation,dynamodb,dynamodbstreams,kinesis,lambda,firehose,cloudwatch
+      - SERVICES=dynamodb,cloudwatch
+    network_mode: "host"
+  sbrawsddbm-dynamodb-viewer:
+    depends_on:
+      - sbrawsddbm-localstack
+    image: yamitzky/dynamodb-gui
+    tty: true
+    ports:
+      - "127.0.0.1:8001:8001"
+    environment:
+      - DYNAMO_ENDPOINT=http://localhost:4566
+    network_mode: "host"
+  sbrawsddbm-influxdb:
+    build:
+      context: .
+      dockerfile: test-container-config/influxdb/Dockerfile
+    ports:
+      - "127.0.0.1:8186:8086"
+    env_file:
+      - 'test-container-config/influxdb/influxdb.env'
+    network_mode: "host"
+  sbrawsddbm-grafana:
+    build:
+      context: .
+      dockerfile: test-container-config/grafana/Dockerfile
+    ports:
+      - "127.0.0.1:4000:3000"
+    env_file:
+      - 'test-container-config/grafana/grafana.env'
+    depends_on:
+      - sbrawsddbm-influxdb
+    network_mode: "host"
+  sbrawsddbm-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY=this-is-a-requirement-when-running-locally
+      - AWS_SECRET_ACCESS_KEY=ssshhhh
+    depends_on:
+      - sbrawsddbm-localstack
+    network_mode: "host"

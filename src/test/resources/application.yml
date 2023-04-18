@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: rest-awsdynamodb-metrics-demo
+
+aws:
+  dynamodb:
+    table:
+      prefix: local-demo-
+    local:
+      endpoint: http://localhost:4566 # localstack
+
+metrics:
+  environment: local
+
+management:
+  influx:
+    metrics:
+      export:
+        enabled: false # Whether exporting of metrics to this backend is enabled.
+    web:
+      server:
+        # i.e. versus setting @Timed annotation on controller
+        auto-time-requests: true
+  # expose all metrics endpoints:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
