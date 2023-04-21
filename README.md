@@ -62,3 +62,6 @@ Once all containers are running, you can proceed to add some data over the demo 
 ### tests and code coverage
 The project is also configured to produce code coverage data using the jacoco maven plugin.
 After a build, this information can be found here: target/site/jacoco/index.html
+
+## Example Grafana metrics after REST API activity
+![Image](grafana-results-example.png)

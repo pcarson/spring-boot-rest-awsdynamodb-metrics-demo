@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Test basic String -> LocalDateTime convert/unconvert
  */
-class LocalDateTimeConverterTest {
+class DynamoDBLocalDateTimeConverterTest {
 
     final LocalDateTime localDateTime =
             LocalDateTime.of(2024, 12, 31, 8, 45, 20, 111);

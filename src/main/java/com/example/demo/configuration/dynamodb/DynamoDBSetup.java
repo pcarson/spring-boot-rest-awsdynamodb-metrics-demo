@@ -28,10 +28,10 @@ public class DynamoDBSetup {
 
     @PostConstruct
     public Boolean setupTables() {
-        String tableName =
+        var tableName =
                 dynamoDBMapperConfig.getTableNameOverride().getTableNamePrefix() + User.TABLE_NAME;
 
-        DynamoDB client = new DynamoDB(amazonDynamoDB);
+        var client = new DynamoDB(amazonDynamoDB);
         List<KeySchemaElement> keySchema = Collections
                 .singletonList(new KeySchemaElement().withAttributeName(User.ID_NAME).withKeyType(KeyType.HASH));
         List<AttributeDefinition> attributeDefinitions = new ArrayList<>();
@@ -49,7 +49,7 @@ public class DynamoDBSetup {
                         .withProjection(new Projection().withProjectionType(ProjectionType.ALL))
                         .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L)));
 
-        CreateTableRequest request = new CreateTableRequest().withTableName(tableName)
+        var request = new CreateTableRequest().withTableName(tableName)
                 .withKeySchema(keySchema)
                 .withAttributeDefinitions(attributeDefinitions)
                 .withGlobalSecondaryIndexes(globalSecondaryIndexes)
@@ -65,7 +65,7 @@ public class DynamoDBSetup {
         boolean tablesCreated = TableUtils.createTableIfNotExists(amazonDynamoDB, request);
 
         if (tablesCreated) {
-            Table table = client.getTable(tableName);
+            var table = client.getTable(tableName);
             log.info("CreateTable request for " + tableName);
             try {
                 table.waitForActive();

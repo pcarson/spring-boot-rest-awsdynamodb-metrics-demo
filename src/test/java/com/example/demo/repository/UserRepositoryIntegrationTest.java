@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * NB a copy of dynamo local has tobe running to run this test.
  * the maven build will trigger its own copy - otherwise use localstack.
  */
-public class UserRepositoryIT extends BaseDynamoDbTest {
+public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
 
     private static final LocalDateTime NOW = LocalDateTime.now();
 

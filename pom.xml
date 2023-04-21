@@ -116,7 +116,7 @@
                         exclude integration tests from unit test phase
                         so we don't have to download and run dynamodb local
                          -->
-                        <exclude>**/IT.java</exclude>
+                        <exclude>**/*IntegrationTest.java</exclude>
                     </excludes>
                     <environmentVariables>
                         <AWS_ACCESS_KEY_ID>local-build-requirement</AWS_ACCESS_KEY_ID>
