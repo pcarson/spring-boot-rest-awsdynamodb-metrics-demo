@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot REST crud with AWS DynamoDB implementation</description>
 	<properties>
 		<java.version>17</java.version>
-		<org.projectlombok.version>1.18.16</org.projectlombok.version>
+		<org.projectlombok.version>1.18.26</org.projectlombok.version>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<openapi-webmvc-ui.version>2.0.0</openapi-webmvc-ui.version>
 		<aws.java.sdk.version>1.12.94</aws.java.sdk.version>
