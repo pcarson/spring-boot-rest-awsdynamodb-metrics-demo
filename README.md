@@ -31,7 +31,7 @@ The grafana dashboard can be viewed, once started, see [here](http://localhost:3
 * build the springboot demo. If you want to do this yourself, you'll need java 17 installed, and if not using the maven wrapper mvnw mentioned below, a local install of maven
   * on the command line in the root directory (i.e. the same directory as the 'pom.xml' file), type
 ```agsl
-./mvn clean install
+./mvnw clean install
 ```
 * once the build finishes, there should be a file 'spring-boot-rest-awsdynamodb-metrics-demo-0.0.1-SNAPSHOT.jar' visible in the target directory
 * on the command line in the root directory (i.e. the same directory as the 'docker-compose.yml' file), type
