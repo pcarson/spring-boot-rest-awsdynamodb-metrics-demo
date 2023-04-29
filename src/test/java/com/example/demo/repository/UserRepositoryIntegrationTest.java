@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 /**
- * NB a copy of dynamo local has tobe running to run this test.
- * the maven build will trigger its own copy - otherwise use localstack.
+ * NB If this test is run as part of a maven build then local dynamo will be provided by maven.
+ * To run this test standalone, a running localstack instance is required.
  */
 public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
 

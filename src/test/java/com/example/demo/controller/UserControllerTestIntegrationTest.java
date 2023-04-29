@@ -25,6 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
+/**
+ * NB If this test is run as part of a maven build then local dynamo will be provided by maven.
+ * To run this test standalone, a running localstack instance is required.
+ */
 class UserControllerTestIntegrationTest {
 
     @Autowired
