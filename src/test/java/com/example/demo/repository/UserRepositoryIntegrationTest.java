@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * NB If this test is run as part of a maven build then local dynamo will be provided by maven.
  * To run this test standalone, a running localstack instance is required.
  */
-public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
+class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
 
     private static final LocalDateTime NOW = LocalDateTime.now();
 
@@ -31,7 +31,7 @@ public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
     private UserRepository repository;
 
     @Test
-    public void createUserTest() {
+    void createUserTest() {
         var user = createUser();
 
         var savedUser = repository.save(user);
@@ -42,7 +42,7 @@ public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
     }
 
     @Test
-    public void findByEmailHappyDays() {
+    void findByEmailHappyDays() {
         var user = createUser();
         user.setEmail("x@y.com");
 
@@ -54,12 +54,12 @@ public class UserRepositoryIntegrationTest extends BaseDynamoDbTest {
     }
 
     @Test
-    public void findByEmailNotFound() {
+    void findByEmailNotFound() {
         assertEquals(Collections.emptyList(), repository.findUserByEmailAddress("y@x.com"));
     }
 
     @Test
-    public void findAll() {
+    void findAll() {
         var userOne = repository.save(createUser());
         var userTwo = repository.save(createUser());
 
